@@ -1,15 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Loading v-show="loading"></Loading>
+    <router-view />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import {useStore} from 'vuex'
+  import Loading from '@/components/Loading.vue'
+  import {computed} from 'vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Loading
+  },
+  setup() {
+    const store = useStore()
+    return {
+      loading: computed(() => store.state.loading)
+    }
   }
 }
 </script>
